@@ -12,6 +12,9 @@ Lightmap-*.exr.meta
 Assets/Postprocessing/
 Assets/Postprocessing.meta
 
+Assets/BayatGames/
+Assets/BayatGames.meta
+
 ===============
 Builds
 ===============
