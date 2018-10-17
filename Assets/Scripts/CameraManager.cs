@@ -60,7 +60,7 @@ public class CameraManager : MonoBehaviour {
         {
             foreach (Waypoint childWaypoint in currentWaypoints) // Check each waypoints in the frame
             {
-                if (Vector2.Distance(player.position, childWaypoint.transform.position) <= 0.2f && !cameraTransition)
+                if (Vector2.Distance(player.position, childWaypoint.transform.position) <= 0.5f && !cameraTransition)
                 {
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
@@ -76,24 +76,28 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.001f)
+        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.1f)
         {
             mainCamera.position = Vector3.SmoothDamp(mainCamera.position, cameraTargetPosition, ref cameraVelocity, cameraSmoothTime);
         }
 
-        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.4f)
+        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.5f)
         {
             if (nextDirectionRight)
                 player.position += Vector3.right * Time.deltaTime * playerAnimationSpeed;
             else
                 player.position -= Vector3.right * Time.deltaTime * playerAnimationSpeed;
         }
+        else if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) <= 0.5f)
+        {
+            CharacterManager.instance.StopWalkingAnim();
+        }
 
         // Stop animation
-        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.4f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.001f)
+        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.5f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.1f)
         {
             cameraTransition = false;
-            CharacterManager.instance.StopWalkingAnim();
+            mainCamera.position = cameraTargetPosition;
         }
     }
     

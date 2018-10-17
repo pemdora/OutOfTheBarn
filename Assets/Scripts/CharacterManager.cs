@@ -25,6 +25,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    [HideInInspector]
     public static CharacterManager instance = null;
     void Awake()
     {
@@ -52,25 +53,24 @@ public class CharacterManager : MonoBehaviour
     void Update () {
         if (!blockaction)
         {
-            if (Input.GetKey(KeyCode.Space) && !objectInteraction)
+            if (Input.GetKeyDown(KeyCode.Space) && !objectInteraction)
             {
-                Debug.Log("Carring");
                 if (objectTocarry == null)
                 {
                     objectInteraction = true;
                     blockaction = true;
-                    Invoke("Blockaction", 1);
+                    Invoke("Blockaction", 0.25f);
                 }
             }
-            else if (Input.GetKey(KeyCode.Space) && objectInteraction)
+            else if (Input.GetKeyDown(KeyCode.Space) && objectInteraction)
             {
-                Debug.Log("Not Carring");
                 objectInteraction = false;
                 if (objectTocarry)
                 {
                     DropObject();
+                    ObjectToCarry.instance.KeyFall();
                     blockaction = true;
-                    Invoke("Blockaction", 1);
+                    Invoke("Blockaction", 0.25f);
                 }
             }
         }
@@ -83,7 +83,7 @@ public class CharacterManager : MonoBehaviour
         if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
         {
             horizontalMove = Input.GetAxis("Horizontal");
-            if (horizontalMove > -0.2f && horizontalMove < 0.2f)
+            if (horizontalMove > -0.1f && horizontalMove < 0.1f)
             {
                 myAnimator1.SetBool("Walk", false);
             }
@@ -122,6 +122,8 @@ public class CharacterManager : MonoBehaviour
     public void CarryObject(GameObject obj)
     {
         objectTocarry = obj;
+        SpriteRenderer spriteToFlip = objectTocarry.GetComponent<SpriteRenderer>();
+        spriteToFlip.flipX = !rightDirection; // flip if facing left
         objectTocarry.transform.parent = this.player.transform;
         objectTocarry.transform.position = objectAnchor.position;
     }

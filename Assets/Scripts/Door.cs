@@ -6,6 +6,7 @@ public class Door : MonoBehaviour {
 
     private Animator myAnimator;
     private BoxCollider2D collider;
+    public int id;
 
     // Use this for initialization
     void Start ()
