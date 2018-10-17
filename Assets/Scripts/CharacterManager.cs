@@ -10,9 +10,14 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private float horizontalMove = 0f;
     private bool rightDirection;
-    private SpriteRenderer mysprite;
-
-    private Animator myAnimator;
+    [SerializeField]
+    private SpriteRenderer mysprite1;
+    [SerializeField]
+    private Animator myAnimator1;
+    [SerializeField]
+    private SpriteRenderer mysprite2;
+    [SerializeField]
+    private Animator myAnimator2;
 
     [SerializeField]
     private float speed;
@@ -34,7 +39,6 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        mysprite = GetComponent<SpriteRenderer>();
         myAnimator = GetComponent<Animator>();
         rightDirection = true;
     }
@@ -66,7 +70,8 @@ public class CharacterManager : MonoBehaviour
         if (horizontalMove > 0 && !rightDirection || horizontalMove < 0 && rightDirection)
         {
             rightDirection = !rightDirection;
-            mysprite.flipX = !rightDirection; // flip if facing left
+            mysprite1.flipX = !rightDirection; // flip if facing left
+            mysprite2.flipX = !rightDirection; // flip if facing left
         }
     }
 

@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: df863e797532c2e4fafc2f92442dea20
+guid: 8c491a767c12b6b40ab90815a30361b7
 TextureImporter:
   fileIDToRecycleName:
-    21300000: sheep_walking_0
-    21300002: sheep_walking_1
-    21300004: sheep_walking_2
-    21300006: sheep_walking_3
+    21300000: sheep_arm_walking_0
+    21300002: sheep_arm_walking_1
+    21300004: sheep_arm_walking_2
+    21300006: sheep_arm_walking_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -132,7 +132,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: sheep_walking_0
+      name: sheep_arm_walking_0
       rect:
         serializedVersion: 2
         x: 0
@@ -146,13 +146,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86f60517f58761241be2ae624d84dcb8
+      spriteID: 991a9809d9129cf4cb4db9c79bb8d68f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheep_walking_1
+      name: sheep_arm_walking_1
       rect:
         serializedVersion: 2
         x: 500
@@ -166,16 +166,16 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7236fa24b2e0da242adf66aff8220a49
+      spriteID: ccecac79f5991cc49b8bb9095def1924
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheep_walking_2
+      name: sheep_arm_walking_2
       rect:
         serializedVersion: 2
-        x: 998
+        x: 1000
         y: 0
         width: 500
         height: 500
@@ -186,13 +186,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 064b9e3d56f32914f966ec673e9aa255
+      spriteID: 710fa92f92c73d2428aeb7678531064b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: sheep_walking_3
+      name: sheep_arm_walking_3
       rect:
         serializedVersion: 2
         x: 1500
@@ -206,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64618e6f501878f40adffc41bb80a833
+      spriteID: 96aa0b4773193114a85135fc807b589c
       vertices: []
       indices: 
       edges: []
@@ -214,7 +214,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 294bbd24d2bf2c84ba7dc0d23c26f447
+    spriteID: e69d86c38db6f564a8fb870ec22814d1
     vertices: []
     indices: 
     edges: []

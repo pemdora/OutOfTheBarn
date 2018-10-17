@@ -91,7 +91,6 @@ public class CameraManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Stop");
             CharacterManager.instance.StopWalkingAnim();
         }
 
