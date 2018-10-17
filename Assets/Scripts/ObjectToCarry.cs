@@ -8,19 +8,11 @@ public class ObjectToCarry : MonoBehaviour {
 	void Start () {
 		
 	}
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            CharacterManager.instance.CarryObject(this.gameObject);
-        }
-    }
     
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("OnCollisionEnter2D");
+        if (CharacterManager.instance.objectInteraction)
+            CharacterManager.instance.CarryObject(this.gameObject);
     }
     
 }
