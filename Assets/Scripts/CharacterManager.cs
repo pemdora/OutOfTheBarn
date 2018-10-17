@@ -32,13 +32,13 @@ public class CharacterManager : MonoBehaviour {
     public void FixedUpdate()
     {
         horizontalMove = Input.GetAxis("Horizontal");
-        if (horizontalMove != 0)
+        if (horizontalMove > -0.04f && horizontalMove < 0.04f)
         {
-            myAnimator.SetBool("Run", true);
+            myAnimator.SetBool("Walk", false);
         }
         else
         {
-            myAnimator.SetBool("Run", false);
+            myAnimator.SetBool("Walk", true);
         }
         rigidBody.velocity = new Vector2(horizontalMove*speed, rigidBody.velocity.y); // x--
         Flip();
