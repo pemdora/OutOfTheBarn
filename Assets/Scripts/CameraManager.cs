@@ -62,6 +62,7 @@ public class CameraManager : MonoBehaviour {
             {
                 if (Vector2.Distance(player.position, childWaypoint.position) <= 0.2f && !cameraTransition)
                 {
+                    Debug.Log("ok");
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
 
