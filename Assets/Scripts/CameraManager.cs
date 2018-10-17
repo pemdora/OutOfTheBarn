@@ -25,7 +25,6 @@ public class CameraManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject waypointsParent;
-    private Transform[] allFrames;
     [SerializeField]
     private Transform currentFrame;
     public Transform[] currentWaypoints; // waypoints of current Frame, each currentWaypoint have a WayPointScript
@@ -48,14 +47,6 @@ public class CameraManager : MonoBehaviour {
         mainCamera = this.transform;
         cameraTransition = false;
         cameraTargetPosition = this.transform.position;
-        allFrames = new Transform[waypointsParent.transform.childCount];
-        int i = 0;
-        foreach (Transform child in waypointsParent.transform)
-        {
-            allFrames[i] = child;
-            i++;
-            //child is your child transform
-        }
         GetWaypoints();
     }
 
@@ -74,11 +65,11 @@ public class CameraManager : MonoBehaviour {
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
 
-                    cameraTargetPosition = waypoint.nextcameraPosition;
-                    playerTargetPosition = waypoint.nextplayerPosition;
+                    cameraTargetPosition = waypoint.nextcameraPosition.position;
+                    playerTargetPosition = waypoint.nextplayerPosition.position;
                     currentFrame = waypoint.nextFrame;
+                    nextDirectionRight = waypoint.nextDirectionRight;
                     GetWaypoints();
-                    //ActiveWaypoints(false);
                 }
             }
         }
@@ -86,31 +77,28 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) >= 0.001f)
+        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.001f)
         {
             mainCamera.position = Vector3.SmoothDamp(mainCamera.position, cameraTargetPosition, ref cameraVelocity, cameraSmoothTime);
         }
 
-        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) >= 0.2f)
+        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.2f)
         {
             if (nextDirectionRight)
                 player.position += Vector3.right * Time.deltaTime * playerAnimationSpeed;
             else
                 player.position -= Vector3.right * Time.deltaTime * playerAnimationSpeed;
         }
+        else
+        {
+            Debug.Log("Stop");
+            CharacterManager.instance.StopWalkingAnim();
+        }
 
-        if(Vector2.Distance(player.position, playerTargetPosition) < 0.2f)
+        // Stop animation
+        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.2f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.001f)
         {
             cameraTransition = false;
-            //ActiveWaypoints(true);
-        }
-    }
-
-    private void ActiveWaypoints(bool value)
-    {
-        foreach (Transform frame in allFrames) // Check each waypoints in the frame
-        {
-            frame.gameObject.SetActive(value);
         }
     }
     

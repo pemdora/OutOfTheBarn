@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Waypoint : MonoBehaviour{
-    public Vector3 nextplayerPosition;
-    public Vector3 nextcameraPosition;
+    public Transform nextplayerPosition;
+    public Transform nextcameraPosition;
     public Transform nextFrame;
     public bool nextDirectionRight;
 }
