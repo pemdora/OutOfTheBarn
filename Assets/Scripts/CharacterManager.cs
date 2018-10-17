@@ -31,20 +31,22 @@ public class CharacterManager : MonoBehaviour {
     // Dedicated for physics, Called a fixed amount (fixed amount of time per second) 
     public void FixedUpdate()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        if (horizontalMove > -0.04f && horizontalMove < 0.04f)
+        if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
         {
-            myAnimator.SetBool("Walk", false);
+            horizontalMove = Input.GetAxis("Horizontal");
+            if (horizontalMove > -0.04f && horizontalMove < 0.04f)
+            {
+                myAnimator.SetBool("Walk", false);
+            }
+            else
+            {
+                myAnimator.SetBool("Walk", true);
+            }
+            rigidBody.velocity = new Vector2(horizontalMove * speed, rigidBody.velocity.y); // x--
+            Flip();
         }
-        else
-        {
-            myAnimator.SetBool("Walk", true);
-        }
-        rigidBody.velocity = new Vector2(horizontalMove*speed, rigidBody.velocity.y); // x--
-        Flip();
     }
-
-    // Dedicated for physics, Called a fixed amount (fixed amount of time per second) 
+    
     public void Flip()
     {
         if (horizontalMove > 0 && !rightDirection || horizontalMove < 0 && rightDirection)
