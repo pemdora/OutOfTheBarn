@@ -65,8 +65,8 @@ public class CameraManager : MonoBehaviour {
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
 
-                    cameraTargetPosition = waypoint.nextcameraPosition;
-                    playerTargetPosition = waypoint.nextplayerPosition;
+                    cameraTargetPosition = waypoint.nextcameraPosition.position;
+                    playerTargetPosition = waypoint.nextplayerPosition.position;
                     currentFrame = waypoint.nextFrame;
                     nextDirectionRight = waypoint.nextDirectionRight;
                     GetWaypoints();
@@ -77,7 +77,7 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) >= 0.001f)
+        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.001f)
         {
             mainCamera.position = Vector3.SmoothDamp(mainCamera.position, cameraTargetPosition, ref cameraVelocity, cameraSmoothTime);
         }
@@ -89,8 +89,14 @@ public class CameraManager : MonoBehaviour {
             else
                 player.position -= Vector3.right * Time.deltaTime * playerAnimationSpeed;
         }
-        Debug.Log(Vector2.Distance(player.position, playerTargetPosition));
-        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.2f)
+        else
+        {
+            Debug.Log("Stop");
+            CharacterManager.instance.StopWalkingAnim();
+        }
+
+        // Stop animation
+        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.2f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.001f)
         {
             cameraTransition = false;
         }
