@@ -8,10 +8,12 @@ public class ObjectToCarry : MonoBehaviour {
     public static ObjectToCarry instance = null;
     public enum Type {key};
     public int id;
-    public bool keyFall;
+    public bool objectFall;
+    public bool objectUp;
 
-    public float keyGroundYPosition;
-    public float keyFallspeed = 2f;
+    public float objectGroundYPosition;
+    public float objectUpYPosition;
+    public float objectAnimationSpeed = 2f;
 
     void Awake()
     {
@@ -31,24 +33,38 @@ public class ObjectToCarry : MonoBehaviour {
     // Dedicated for physics, Called a fixed amount (fixed amount of time per second) 
     public void FixedUpdate()
     {
-        if (keyFall && this.transform.position.y >= keyGroundYPosition) // cant move player when a cinematic is playing
+        if (objectUp && this.transform.position.y <= objectUpYPosition)
         {
-            this.transform.position -= new Vector3(0f, keyFallspeed*Time.deltaTime, 0f);
+            this.transform.position += new Vector3(0f, objectAnimationSpeed * Time.deltaTime, 0f);
         }
-        else if (keyFall && this.transform.position.y < keyGroundYPosition) // cant move player when a cinematic is playing
+        else if (objectUp && this.transform.position.y > objectUpYPosition)
         {
-            keyFall = false;
+            objectUp = false;
+        }
+        
+        if (objectFall && this.transform.position.y >= objectGroundYPosition)
+        {
+            this.transform.position -= new Vector3(0f, objectAnimationSpeed*Time.deltaTime, 0f);
+        }
+        else if (objectFall && this.transform.position.y < objectGroundYPosition) 
+        {
+            objectFall = false;
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (CharacterManager.instance.objectInteraction)
+        if (CharacterManager.instance.pressSpace && !CharacterManager.instance.blockaction)
             CharacterManager.instance.CarryObject(this.gameObject);
     }
 
-    public void KeyFall()
+    public void ObjFall()
     {
-        keyFall = true;
+        objectFall = true;
+    }
+
+    public void ObjUp()
+    {
+        objectUp = true;
     }
 }

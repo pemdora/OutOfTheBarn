@@ -5,8 +5,8 @@ using UnityEngine;
 public class CharacterManager : MonoBehaviour
 {
     public GameObject player;
-    public bool objectInteraction;
-    private bool blockaction;
+    public bool pressSpace;
+    public bool blockaction;
     [HideInInspector]
     public GameObject objectTocarry;
     public Transform objectAnchor;
@@ -50,28 +50,23 @@ public class CharacterManager : MonoBehaviour
     }
 
     // Update is called once per frame => not good because besed on computer fps
-    void Update () {
+    void Update()
+    {
         if (!blockaction)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !objectInteraction)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (objectTocarry == null)
-                {
-                    objectInteraction = true;
-                    blockaction = true;
-                    Invoke("Blockaction", 0.25f);
-                }
+                Debug.Log("space");
+                pressSpace = true;
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && objectInteraction)
+            else
             {
-                objectInteraction = false;
-                if (objectTocarry)
-                {
-                    DropObject();
-                    ObjectToCarry.instance.KeyFall();
-                    blockaction = true;
-                    Invoke("Blockaction", 0.25f);
-                }
+                pressSpace = false;
+            }
+
+            if (objectTocarry != null && pressSpace)
+            {
+                DropObject();
             }
         }
         Flip();
@@ -121,15 +116,27 @@ public class CharacterManager : MonoBehaviour
 
     public void CarryObject(GameObject obj)
     {
+        Debug.Log("Carry");
+        myAnimator1.SetTrigger("CarringTrigger");
+        ObjectToCarry.instance.ObjUp();
+        blockaction = true;
+        Invoke("Blockaction", 0.25f);
+
         objectTocarry = obj;
         SpriteRenderer spriteToFlip = objectTocarry.GetComponent<SpriteRenderer>();
         spriteToFlip.flipX = !rightDirection; // flip if facing left
         objectTocarry.transform.parent = this.player.transform;
-        objectTocarry.transform.position = objectAnchor.position;
     }
 
     private void DropObject()
     {
+        Debug.Log("Drop");
+        pressSpace = false;
+        myAnimator1.SetTrigger("CarringTrigger");
+        ObjectToCarry.instance.ObjFall();
+        blockaction = true;
+        Invoke("Blockaction", 1.5f);
+
         objectTocarry.transform.parent = null;
         objectTocarry = null;
     }
