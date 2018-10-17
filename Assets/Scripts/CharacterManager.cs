@@ -56,7 +56,6 @@ public class CharacterManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("space");
                 pressSpace = true;
             }
             else
@@ -116,9 +115,8 @@ public class CharacterManager : MonoBehaviour
 
     public void CarryObject(GameObject obj)
     {
-        Debug.Log("Carry");
         myAnimator1.SetTrigger("CarringTrigger");
-        ObjectToCarry.instance.ObjUp();
+        obj.GetComponent<ObjectToCarry>().ObjUp();
         blockaction = true;
         Invoke("Blockaction", 0.25f);
 
@@ -130,10 +128,9 @@ public class CharacterManager : MonoBehaviour
 
     private void DropObject()
     {
-        Debug.Log("Drop");
         pressSpace = false;
         myAnimator1.SetTrigger("CarringTrigger");
-        ObjectToCarry.instance.ObjFall();
+        objectTocarry.GetComponent<ObjectToCarry>().ObjFall();
         blockaction = true;
         Invoke("Blockaction", 1.5f);
 

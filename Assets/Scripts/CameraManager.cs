@@ -64,6 +64,7 @@ public class CameraManager : MonoBehaviour {
                 {
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
+                    CharacterManager.instance.blockaction = true;
                     cameraTargetPosition = waypoint.nextcameraPosition.position;
                     playerTargetPosition = waypoint.nextplayerPosition.position;
                     nextDirectionRight = waypoint.nextDirectionRight;
@@ -83,6 +84,7 @@ public class CameraManager : MonoBehaviour {
 
         if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.5f)
         {
+            Debug.Log("GO");
             if (nextDirectionRight)
                 player.position += Vector3.right * Time.deltaTime * playerAnimationSpeed;
             else
@@ -98,6 +100,7 @@ public class CameraManager : MonoBehaviour {
         {
             cameraTransition = false;
             mainCamera.position = cameraTargetPosition;
+            CharacterManager.instance.blockaction = false;
         }
     }
     

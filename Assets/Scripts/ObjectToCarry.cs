@@ -5,7 +5,6 @@ using UnityEngine;
 public class ObjectToCarry : MonoBehaviour {
 
     [HideInInspector]
-    public static ObjectToCarry instance = null;
     public enum Type {key};
     public int id;
     public bool objectFall;
@@ -14,18 +13,6 @@ public class ObjectToCarry : MonoBehaviour {
     public float objectGroundYPosition;
     public float objectUpYPosition;
     public float objectAnimationSpeed = 2f;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
 
     // Use this for initialization
     void Start () { }
