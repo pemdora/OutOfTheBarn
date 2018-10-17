@@ -14,7 +14,7 @@ public class ObjectToCarry : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            this.transform.position += new Vector3(0f,1f,0f);
+            CharacterManager.instance.CarryObject(this.gameObject);
         }
     }
 }

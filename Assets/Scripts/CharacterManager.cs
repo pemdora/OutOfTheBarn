@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    public GameObject player;
+    [HideInInspector]
+    public GameObject objectTocarry;
+    public Transform objectAnchor;
 
     private Rigidbody2D rigidBody;
 
@@ -38,6 +42,7 @@ public class CharacterManager : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         myAnimator1 = GetComponent<Animator>();
         rightDirection = true;
+        player = this.gameObject;
     }
 
     // Update is called once per frame => not good because besed on computer fps
@@ -69,7 +74,28 @@ public class CharacterManager : MonoBehaviour
             rightDirection = !rightDirection;
             mysprite1.flipX = !rightDirection; // flip if facing left
             mysprite2.flipX = !rightDirection; // flip if facing left
+            if (objectTocarry != null)
+            {
+                SpriteRenderer spriteToFlip = objectTocarry.GetComponent<SpriteRenderer>();
+                spriteToFlip.flipX = !rightDirection; // flip if facing left
+                float distanceToMove = Vector3.Distance(objectTocarry.transform.position, player.transform.position);
+                if (!rightDirection)
+                    distanceToMove = -distanceToMove;
+                objectTocarry.transform.position += new Vector3(distanceToMove, 0f,0f);
+            }
         }
+    }
+
+    public void CarryObject(GameObject obj)
+    {
+        objectTocarry = obj;
+        objectTocarry.transform.parent = this.player.transform;
+        objectTocarry.transform.position = objectAnchor.position;
+    }
+
+    public void DropObject()
+    {
+        objectTocarry = null;
     }
 
     public void StopWalkingAnim()
