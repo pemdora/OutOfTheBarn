@@ -78,7 +78,7 @@ public class CharacterManager : MonoBehaviour
             {
                 SpriteRenderer spriteToFlip = objectTocarry.GetComponent<SpriteRenderer>();
                 spriteToFlip.flipX = !rightDirection; // flip if facing left
-                float distanceToMove = Vector3.Distance(objectTocarry.transform.position, player.transform.position);
+                float distanceToMove  = 1.75f;
                 if (!rightDirection)
                     distanceToMove = -distanceToMove;
                 objectTocarry.transform.position += new Vector3(distanceToMove, 0f,0f);

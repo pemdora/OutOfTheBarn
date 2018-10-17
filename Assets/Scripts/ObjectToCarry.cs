@@ -17,4 +17,14 @@ public class ObjectToCarry : MonoBehaviour {
             CharacterManager.instance.CarryObject(this.gameObject);
         }
     }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("OnCollisionEnter2D");
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        Debug.Log("OnCollisionEnter2D");
+    }
 }
