@@ -18,13 +18,9 @@ public class ObjectToCarry : MonoBehaviour {
         }
     }
     
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("OnCollisionEnter2D");
     }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        Debug.Log("OnCollisionEnter2D");
-    }
+    
 }
