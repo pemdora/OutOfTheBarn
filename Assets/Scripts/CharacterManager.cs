@@ -12,12 +12,9 @@ public class CharacterManager : MonoBehaviour
     private bool rightDirection;
     [SerializeField]
     private SpriteRenderer mysprite1;
-    [SerializeField]
     private Animator myAnimator1;
     [SerializeField]
     private SpriteRenderer mysprite2;
-    [SerializeField]
-    private Animator myAnimator2;
 
     [SerializeField]
     private float speed;
@@ -39,6 +36,7 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
+        myAnimator1 = GetComponent<Animator>();
         rightDirection = true;
     }
 
@@ -51,15 +49,13 @@ public class CharacterManager : MonoBehaviour
         if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
         {
             horizontalMove = Input.GetAxis("Horizontal");
-            if (horizontalMove > -0.04f && horizontalMove < 0.04f)
+            if (horizontalMove > -0.1f && horizontalMove < 0.1f)
             {
                 myAnimator1.SetBool("Walk", false);
-                myAnimator2.SetBool("Walk", false);
             }
             else
             {
                 myAnimator1.SetBool("Walk", true);
-                myAnimator2.SetBool("Walk", false);
             }
             rigidBody.velocity = new Vector2(horizontalMove * speed, rigidBody.velocity.y); // x--
             Flip();
@@ -79,6 +75,5 @@ public class CharacterManager : MonoBehaviour
     public void StopWalkingAnim()
     {
         myAnimator1.SetBool("Walk", true);
-        myAnimator2.SetBool("Walk", true);
     }
 }
