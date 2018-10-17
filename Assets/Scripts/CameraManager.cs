@@ -25,7 +25,6 @@ public class CameraManager : MonoBehaviour {
 
     [SerializeField]
     private GameObject waypointsParent;
-    private Transform[] allFrames;
     [SerializeField]
     private Transform currentFrame;
     public Transform[] currentWaypoints; // waypoints of current Frame, each currentWaypoint have a WayPointScript
@@ -48,14 +47,6 @@ public class CameraManager : MonoBehaviour {
         mainCamera = this.transform;
         cameraTransition = false;
         cameraTargetPosition = this.transform.position;
-        allFrames = new Transform[waypointsParent.transform.childCount];
-        int i = 0;
-        foreach (Transform child in waypointsParent.transform)
-        {
-            allFrames[i] = child;
-            i++;
-            //child is your child transform
-        }
         GetWaypoints();
     }
 
@@ -77,8 +68,8 @@ public class CameraManager : MonoBehaviour {
                     cameraTargetPosition = waypoint.nextcameraPosition;
                     playerTargetPosition = waypoint.nextplayerPosition;
                     currentFrame = waypoint.nextFrame;
+                    nextDirectionRight = waypoint.nextDirectionRight;
                     GetWaypoints();
-                    //ActiveWaypoints(false);
                 }
             }
         }
@@ -91,26 +82,17 @@ public class CameraManager : MonoBehaviour {
             mainCamera.position = Vector3.SmoothDamp(mainCamera.position, cameraTargetPosition, ref cameraVelocity, cameraSmoothTime);
         }
 
-        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) >= 0.2f)
+        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.2f)
         {
             if (nextDirectionRight)
                 player.position += Vector3.right * Time.deltaTime * playerAnimationSpeed;
             else
                 player.position -= Vector3.right * Time.deltaTime * playerAnimationSpeed;
         }
-
-        if(Vector2.Distance(player.position, playerTargetPosition) < 0.2f)
+        Debug.Log(Vector2.Distance(player.position, playerTargetPosition));
+        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.2f)
         {
             cameraTransition = false;
-            //ActiveWaypoints(true);
-        }
-    }
-
-    private void ActiveWaypoints(bool value)
-    {
-        foreach (Transform frame in allFrames) // Check each waypoints in the frame
-        {
-            frame.gameObject.SetActive(value);
         }
     }
     
