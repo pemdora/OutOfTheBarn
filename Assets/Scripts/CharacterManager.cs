@@ -39,7 +39,6 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        myAnimator = GetComponent<Animator>();
         rightDirection = true;
     }
 
@@ -54,11 +53,13 @@ public class CharacterManager : MonoBehaviour
             horizontalMove = Input.GetAxis("Horizontal");
             if (horizontalMove > -0.04f && horizontalMove < 0.04f)
             {
-                myAnimator.SetBool("Walk", false);
+                myAnimator1.SetBool("Walk", false);
+                myAnimator2.SetBool("Walk", false);
             }
             else
             {
-                myAnimator.SetBool("Walk", true);
+                myAnimator1.SetBool("Walk", true);
+                myAnimator2.SetBool("Walk", false);
             }
             rigidBody.velocity = new Vector2(horizontalMove * speed, rigidBody.velocity.y); // x--
             Flip();
@@ -77,6 +78,7 @@ public class CharacterManager : MonoBehaviour
 
     public void StopWalkingAnim()
     {
-        myAnimator.SetBool("Walk", true);
+        myAnimator1.SetBool("Walk", true);
+        myAnimator2.SetBool("Walk", true);
     }
 }
