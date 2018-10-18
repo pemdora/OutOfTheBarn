@@ -367,6 +367,7 @@ MonoBehaviour:
   cameraVelocity: {x: 0, y: 0, z: 0}
   cameraSmoothTime: 0.35
   cameraTransition: 0
+  walkAnimation: 0
   nextDirectionRight: 0
   waypointsParent: {fileID: 850379724}
   currentFrame: {fileID: 1588742615}
@@ -787,6 +788,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08be9c356226d014fa9cd1004bbe652b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
+  objectFall: 0
+  objectUp: 0
+  objectGroundYPosition: 0
+  objectUpYPosition: 0
+  objectAnimationSpeed: 2
 --- !u!61 &922158257
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1323,6 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0146f703704120498029a782c7cd24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
 --- !u!1 &1532375524
 GameObject:
   m_ObjectHideFlags: 0
