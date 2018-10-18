@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1260732254314952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.29, y: -0.5, z: -0.23458825}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.331347, y: 0, z: -0.23458825}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetPlayer: {fileID: 0}
-  follow_distance: 2
-  speed: 30
+  follow_distance: 3
+  speed: 4
 --- !u!212 &212545780079812796
 SpriteRenderer:
   m_ObjectHideFlags: 1

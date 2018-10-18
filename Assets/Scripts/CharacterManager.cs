@@ -89,7 +89,7 @@ public class CharacterManager : MonoBehaviour
     // Dedicated for physics, Called a fixed amount (fixed amount of time per second) 
     public void FixedUpdate()
     {
-        if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
+       // if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
         {
             horizontalMove = Input.GetAxis("Horizontal");
             if (horizontalMove > -0.1f && horizontalMove < 0.1f)
