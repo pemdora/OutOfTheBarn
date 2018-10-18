@@ -6,6 +6,7 @@ public class CharacterManager : MonoBehaviour
 {
     public GameObject player;
     public bool pressSpace;
+    public bool wistleInterraction;
     public bool blockaction;
     [HideInInspector]
     public GameObject objectTocarry;
@@ -53,13 +54,28 @@ public class CharacterManager : MonoBehaviour
     {
         if (!blockaction)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!wistleInterraction && Input.GetKeyDown(KeyCode.Space))
             {
                 pressSpace = true;
             }
             else
             {
                 pressSpace = false;
+            }
+
+            if (objectTocarry == null && !pressSpace && Input.GetKeyDown(KeyCode.V))
+            {
+                wistleInterraction = true;
+                myAnimator1.SetTrigger("isWistling");
+
+                if (!TriggerEvent.instance.goodAlert)
+                {
+                    TriggerEvent.instance.DisplayFalseAlertText();
+                }
+            }
+            else
+            {
+                wistleInterraction = false;
             }
 
             if (objectTocarry != null && pressSpace)
