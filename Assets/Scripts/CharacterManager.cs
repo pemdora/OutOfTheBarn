@@ -27,6 +27,7 @@ public class CharacterManager : MonoBehaviour
 
     [SerializeField]
     private float speed;
+    public string collisionName;
 
     [HideInInspector]
     public static CharacterManager instance = null;
@@ -81,6 +82,7 @@ public class CharacterManager : MonoBehaviour
 
                 if (!TriggerEvent.instance.goodAlert)
                 {
+                    Debug.Log("False Alert");
                     TriggerEvent.instance.DisplayFalseAlertText();
                 }
             }
@@ -172,5 +174,10 @@ public class CharacterManager : MonoBehaviour
     private void Blockaction()
     {
         blockaction = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        collisionName = collision.name;
     }
 }

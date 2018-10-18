@@ -16,6 +16,7 @@ public class CameraColliderEvent : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        CameraManager.instance.PlayChangingFrameAnimation();
+        if(collision.name == "Player")
+            CameraManager.instance.PlayChangingFrameAnimation();
     }
 }

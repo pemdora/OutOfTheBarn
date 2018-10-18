@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9385bd4cd787ce44f82f7f801d9a7ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   pauseUI: {fileID: 0}
   nextScene: Classroom2
   pauseState: 0

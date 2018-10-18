@@ -6,9 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
-
-    [SerializeField]
-    private int level;
+    
+    public int level;
     public enum Type { key, waterBucket };
 
     public GameObject pauseUI;
@@ -21,6 +20,15 @@ public class LevelManager : MonoBehaviour {
     public GameObject textPanel;
     public Text txtElement;
     public string finishedText;
+    
+    [Header("[Level 2 Variables]")]
+    #region Level2
+    private int levelStep; // 1 Get water into box collider
+    private bool hasWistle;
+    public Animator myAnimatorBear;
+    public Animator myAnimatorSheep;
+    #endregion
+
 
     [HideInInspector]
     public static LevelManager instance = null;
@@ -40,6 +48,7 @@ public class LevelManager : MonoBehaviour {
     public void Start()
     {
         inFinishedCollider = false;
+        levelStep = 0;
     }
 
 
@@ -50,21 +59,35 @@ public class LevelManager : MonoBehaviour {
         {
             Pause();
         }*/
-        if (inFinishedCollider)
+        //Cheking Level envent
+        switch (level)
         {
-            switch (level)
-            {
-                case 1:
+            case 1:
+                if (inFinishedCollider)
+                {
                     if (CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().type == Type.waterBucket)
                     {
                         textPanel.SetActive(true);
                         txtElement.text = finishedText;
-                        Invoke("LoadNextScene",2f);
+                        Invoke("LoadNextScene", 2f);
                     }
-                    break;
-                case 2:
-                    break;
-            }
+                }
+                break;
+            case 2:
+                // Step 1 : Get water into box collider
+                if (levelStep==0&&CharacterManager.instance.collisionName.Equals("Lvl1Collider1")&& CharacterManager.instance.objectTocarry!=null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().type == Type.waterBucket)
+                {
+                    levelStep++;
+                    myAnimatorSheep.SetBool("Is_Dead", true);
+                    myAnimatorBear.SetBool("IsThere", true);
+                    Debug.Log("Ok");
+                }
+                // Step 2 : 
+                if (levelStep==1)
+                {
+                    // hasWistle = true
+                }
+                break;
         }
     }
 

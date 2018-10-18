@@ -37,6 +37,7 @@ public class TriggerEvent : MonoBehaviour
         goodAlert = true;
         if (goodAlert &&!CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction)
         {
+            if(LevelManager.instance)
             Invoke("DisplayText", 0.50f);
             textToDisplay.text = "Good Alert";
         }

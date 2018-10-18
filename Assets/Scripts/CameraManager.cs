@@ -73,7 +73,6 @@ public class CameraManager : MonoBehaviour
 
             if ((Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.1f) && !walkAnimation)
             {
-                Debug.Log("STOP transition");
                 mainCamera.position = cameraTargetPosition;
                 CharacterManager.instance.player.transform.position = playerTargetPosition;
                 CharacterManager.instance.blockaction = false;
