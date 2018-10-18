@@ -13,6 +13,7 @@ public class LiftManager : MonoBehaviour
     public bool movingLiftUp;
     public bool movingLiftDown;
     public bool buttonUp;
+    public bool buttonDown;
     private Vector3 targetPosition;
     public float animationSpeed;
 
@@ -20,7 +21,7 @@ public class LiftManager : MonoBehaviour
     // Use this for initialization
     void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (!buttonDown && Input.GetKeyDown(KeyCode.UpArrow) && !movingLiftUp && !movingLiftDown)
         {
             buttonUp = true;
         }
@@ -29,14 +30,32 @@ public class LiftManager : MonoBehaviour
             buttonUp = false;
         }
 
-
-        if (liftActivated && buttonUp)
+        if (!buttonUp && Input.GetKeyDown(KeyCode.DownArrow) && !movingLiftUp && !movingLiftDown)
         {
+            buttonDown = true;
+        }
+        else
+        {
+            buttonDown = false;
+        }
+
+        if (liftActivated && buttonUp && currentLvl< max)
+        {
+            currentLvl++;
             CharacterManager.instance.StopWalkingAnim();
             CharacterManager.instance.player.transform.SetParent(this.transform);
             movingLiftUp = true;
             CharacterManager.instance.blockaction = true;
             targetPosition = this.transform.position + new Vector3(0f, offsetY, 0f);
+        }
+        else if (liftActivated && buttonDown && currentLvl > min)
+        {
+            currentLvl--;
+            CharacterManager.instance.StopWalkingAnim();
+            CharacterManager.instance.player.transform.SetParent(this.transform);
+            movingLiftDown = true;
+            CharacterManager.instance.blockaction = true;
+            targetPosition = this.transform.position - new Vector3(0f, offsetY, 0f);
         }
 
     }
@@ -47,24 +66,23 @@ public class LiftManager : MonoBehaviour
         // The step size is equal to speed times frame time.
         float step = animationSpeed * Time.deltaTime;
 
-        if (movingLiftUp)
+        if (movingLiftUp && !movingLiftDown)
         {
-            Debug.Log("On coll enter");
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, step);
         }
-        if (movingLiftDown)
+        if (movingLiftDown && !movingLiftUp)
         {
-            Debug.Log("On coll enter");
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, step);
         }
 
-
+        // STOP LIFT
         if ((Vector2.Distance(this.transform.position, targetPosition) <= 0.1f))
         {
             this.transform.position = targetPosition;
+            CharacterManager.instance.player.transform.parent = null;
             CharacterManager.instance.blockaction = false;
             movingLiftUp = false;
-            // movingLiftDown = false;
+            movingLiftDown = false;
         }
     }
 
