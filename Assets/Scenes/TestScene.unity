@@ -514,12 +514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bafe5cf57ecad4e90c23de093ce7e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerAnimationSpeed: 6
+  playerAnimationSpeed: 3
   cameraVelocity: {x: 0, y: 0, z: 0}
   cameraSmoothTime: 0.35
   cameraTransition: 0
   walkAnimation: 0
-  playerX: 5
+  playerX: 4
   cameraX: 16
 --- !u!20 &519420031
 Camera:
@@ -833,7 +833,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d13a843f4809a48418aa7ff1e6ced59b, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
