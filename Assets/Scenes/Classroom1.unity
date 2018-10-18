@@ -215,6 +215,21 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 581224806}
+    - target: {fileID: 114587509515584406, guid: 7e5468b0138428744be1ddae1cd2f2ea,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114587509515584406, guid: 7e5468b0138428744be1ddae1cd2f2ea,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114587509515584406, guid: 7e5468b0138428744be1ddae1cd2f2ea,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e5468b0138428744be1ddae1cd2f2ea, type: 2}
   m_IsPrefabAsset: 0

@@ -577,6 +577,21 @@ Prefab:
       propertyPath: m_Text
       value: Got It !
       objectReference: {fileID: 0}
+    - target: {fileID: 114157119703894576, guid: 6ac0fb5e440932c4aa41814c18c3fe48,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157119703894576, guid: 6ac0fb5e440932c4aa41814c18c3fe48,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114157119703894576, guid: 6ac0fb5e440932c4aa41814c18c3fe48,
+        type: 2}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac0fb5e440932c4aa41814c18c3fe48, type: 2}
   m_IsPrefabAsset: 0
