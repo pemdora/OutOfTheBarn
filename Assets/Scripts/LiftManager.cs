@@ -16,8 +16,8 @@ public class LiftManager : MonoBehaviour
     public bool buttonDown;
     private Vector3 targetPosition;
     public float animationSpeed;
+  
 
-    
     // Use this for initialization
     void Update ()
     {
@@ -79,7 +79,7 @@ public class LiftManager : MonoBehaviour
         if ((Vector2.Distance(this.transform.position, targetPosition) <= 0.1f))
         {
             this.transform.position = targetPosition;
-            CharacterManager.instance.player.transform.parent = null;
+            // CharacterManager.instance.player.transform.parent = null;
             CharacterManager.instance.blockaction = false;
             movingLiftUp = false;
             movingLiftDown = false;

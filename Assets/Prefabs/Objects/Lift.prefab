@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   min: 0
   max: 3
-  currentLvl: 0
+  currentLvl: 3
   offsetY: 5
   liftActivated: 0
   movingLiftUp: 0
@@ -88,6 +88,7 @@ MonoBehaviour:
   buttonUp: 0
   buttonDown: 0
   animationSpeed: 5
+  player: {fileID: 0}
 --- !u!212 &212343853707614272
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -127,7 +127,7 @@ public class LevelManager : MonoBehaviour {
                             levelEnding = 3;
                             pnjArrestGroup.transform.position = new Vector3(0.7f, -0.78f, 0f);
                             pnjSheep1.SetBool("Is_Dead", true);
-                            pnjSheep2.SetBool("Is_Dead", true);
+                            pnjSheep0.SetBool("Is_Dead", true);
                             levelStep++;
                         }
                     }

@@ -75,7 +75,7 @@ public class CharacterManager : MonoBehaviour
             }
 
             // Check Wistle
-            if (!wistleInterraction && !carryButtonDown && Input.GetKeyDown(KeyCode.C))
+            if (objectTocarry == null &&!wistleInterraction && !carryButtonDown && Input.GetKeyDown(KeyCode.C))
             {
                 wistleInterraction = true;
                 myAnimator1.SetTrigger("isWistling");
