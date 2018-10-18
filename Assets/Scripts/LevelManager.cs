@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour {
     [Header("[Level 3 Variables]")]
     public Animator cameraAnimator;
     private bool triggerShakingAnim;
+    public GameObject endPanel;
 
     [HideInInspector]
     public static LevelManager instance = null;
@@ -169,6 +170,10 @@ public class LevelManager : MonoBehaviour {
                     Invoke("Blockaction", 1.5f);
                     textPanel.SetActive(true);
                     Invoke("MasktextPanel", 5f);
+                }
+                if (inFinishedCollider)
+                {
+                    endPanel.SetActive(true);
                 }
                 break;
         }
