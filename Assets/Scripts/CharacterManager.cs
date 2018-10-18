@@ -101,7 +101,7 @@ public class CharacterManager : MonoBehaviour
         {
             return;
         }
-        if (!CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation || !blockaction) // cant move player when a cinematic is playing
+        if (!CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation && !blockaction) // cant move player when a cinematic is playing
         {
             horizontalMove = Input.GetAxis("Horizontal");
             if (horizontalMove > -0.1f && horizontalMove < 0.1f)

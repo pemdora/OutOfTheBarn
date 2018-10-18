@@ -122,7 +122,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4610681756077530, guid: ec10047ed6d970747bf2e00fef0a0df8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.56
+      value: 12.79
       objectReference: {fileID: 0}
     - target: {fileID: 4610681756077530, guid: ec10047ed6d970747bf2e00fef0a0df8, type: 2}
       propertyPath: m_LocalPosition.y
@@ -210,6 +210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   doorInterraction: 0
+  locked: 0
 --- !u!61 &287421928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -292,7 +293,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &351232787 stripped
 Transform:
@@ -386,7 +387,7 @@ RectTransform:
   m_Children:
   - {fileID: 905808636}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -513,10 +514,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9385bd4cd787ce44f82f7f801d9a7ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelFinishedUI: {fileID: 0}
-  canvasReceipe: {fileID: 0}
+  level: 0
   pauseUI: {fileID: 0}
+  nextScene: 
   pauseState: 0
+  inFinishedCollider: 0
+  textPanel: {fileID: 0}
+  txtElement: {fileID: 0}
+  finishedText: 
+  hasWistled: 0
+  myAnimatorBear: {fileID: 0}
+  myAnimatorSheep: {fileID: 0}
+  pnjArrestGroup: {fileID: 0}
+  pnjSheep0: {fileID: 0}
+  pnjSheep1: {fileID: 0}
+  pnjSheep2: {fileID: 0}
+  pnjSheep3: {fileID: 0}
 --- !u!4 &401211838
 Transform:
   m_ObjectHideFlags: 0
@@ -573,6 +586,7 @@ MonoBehaviour:
   walkAnimation: 0
   playerX: 4
   cameraX: 16
+  followplayer: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -905,6 +919,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666118519}
   m_CullTransparentMesh: 0
+--- !u!1001 &748721043
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 1.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4503681640873654, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d9c398ce78b88a14db09446d0925012a, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &750010607
 Prefab:
   m_ObjectHideFlags: 0
@@ -914,7 +970,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4518746030415262, guid: 2519240153fc358428c2f223deacf363, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: 8.75
       objectReference: {fileID: 0}
     - target: {fileID: 4518746030415262, guid: 2519240153fc358428c2f223deacf363, type: 2}
       propertyPath: m_LocalPosition.y
@@ -1053,6 +1109,7 @@ MonoBehaviour:
   textPanel: {fileID: 905808635}
   goodAlert: 0
   textToDisplay: {fileID: 666118521}
+  hasleftTrigger: 0
 --- !u!4 &1011754938
 Transform:
   m_ObjectHideFlags: 0
