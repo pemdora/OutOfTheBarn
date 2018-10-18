@@ -5,8 +5,7 @@ using UnityEngine;
 public class ObjectToCarry : MonoBehaviour {
 
     [HideInInspector]
-    public enum Type { key, waterBucket};
-    public Type type;
+    public LevelManager.Type type;
     public int id;
     public bool objectFall;
     public bool objectUp;

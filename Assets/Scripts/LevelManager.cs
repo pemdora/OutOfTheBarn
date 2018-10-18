@@ -3,16 +3,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
-    
-    public static LevelManager instance = null;
-    public GameObject levelFinishedUI;
-    public GameObject canvasReceipe;
+
+    [SerializeField]
+    private int level;
+    public enum Type { key, waterBucket };
+
     public GameObject pauseUI;
+    [SerializeField]
+    private string nextScene;
 
     public bool pauseState;
+    public bool inFinishedCollider;
+    
+    public GameObject textPanel;
+    public Text txtElement;
+    public string finishedText;
 
+    [HideInInspector]
+    public static LevelManager instance = null;
     void Awake()
     {
         pauseState = false;
@@ -20,24 +31,47 @@ public class LevelManager : MonoBehaviour {
         {
             instance = this;
         }
-        else
+        else if (instance != this)
         {
             Destroy(this);
         }
     }
 
     public void Start()
-    { }
+    {
+        inFinishedCollider = false;
+    }
 
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
+        }*/
+        if (inFinishedCollider)
+        {
+            switch (level)
+            {
+                case 1:
+                    if (CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().type == Type.waterBucket)
+                    {
+                        textPanel.SetActive(true);
+                        txtElement.text = finishedText;
+                        Invoke("LoadNextScene",2f);
+                    }
+                    break;
+                case 2:
+                    break;
+            }
         }
     }
 
+    public void LoadNextScene()
+    {
+        SceneManager.LoadScene(nextScene);
+    }
 
     public void LoadScene(string scene)
     {
@@ -61,12 +95,7 @@ public class LevelManager : MonoBehaviour {
         pauseUI.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
-    public void FinishedLevel()
-    {
-        levelFinishedUI.SetActive(true);
-        canvasReceipe.SetActive(false);
-    }
+    
 
     public void Pause()
     {
@@ -87,5 +116,10 @@ public class LevelManager : MonoBehaviour {
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void SetInFinishedCollider(bool value)
+    {
+        inFinishedCollider = value;
     }
 }
