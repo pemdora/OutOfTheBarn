@@ -238,7 +238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &287421926
 Animator:
   serializedVersion: 3
@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  doorInterraction: 0
 --- !u!61 &287421928
 BoxCollider2D:
   m_ObjectHideFlags: 0
