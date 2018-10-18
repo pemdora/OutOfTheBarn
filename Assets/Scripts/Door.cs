@@ -8,6 +8,7 @@ public class Door : MonoBehaviour {
     private BoxCollider2D collider;
     public int id;
     private bool locked;
+    private bool blockaction;
 
     // Use this for initialization
     void Start ()
@@ -29,16 +30,35 @@ public class Door : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().id == this.id)
+        if (!blockaction)
         {
-            Debug.Log("Unlocked");
-            locked = false;
-            myAnimator.SetBool("DoorOpen", true);
-            collider.enabled = false;
+            if (locked && CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().id == this.id)
+            {
+                Debug.Log("Unlocked");
+                blockaction = true;
+                locked = false;
+                myAnimator.SetBool("DoorOpen", true);
+                collider.enabled = false;
+                Invoke("Blockaction", 1f); ;
+            }
+            else if (!locked && CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().id == this.id)
+            {
+                Debug.Log("ReLocked");
+                blockaction = true;
+                locked = true;
+                myAnimator.SetBool("DoorOpen", false);
+                collider.enabled = true;
+                Invoke("Blockaction", 1f); ;
+            }
+            if (locked)
+            {
+                Debug.Log("Locked");
+            }
         }
-        else if(locked)
-        {
-            Debug.Log("Locked");
-        }
+    }
+
+    private void Blockaction()
+    {
+        blockaction = false;
     }
 }

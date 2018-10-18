@@ -19,6 +19,7 @@ public class CameraManager : MonoBehaviour {
     private float cameraSmoothTime;
     //[HideInInspector]
     public bool cameraTransition;
+    public bool walkAnimation;
     private Transform mainCamera;
     private Vector3 cameraTargetPosition;
     public bool nextDirectionRight;
@@ -48,6 +49,7 @@ public class CameraManager : MonoBehaviour {
         cameraTransition = false;
         cameraTargetPosition = this.transform.position;
         GetWaypoints();
+        walkAnimation = false;
     }
 
     private void GetWaypoints(){
@@ -60,12 +62,14 @@ public class CameraManager : MonoBehaviour {
         {
             foreach (Waypoint childWaypoint in currentWaypoints) // Check each waypoints in the frame
             {
-                if (Vector2.Distance(player.position, childWaypoint.transform.position) <= 0.5f && !cameraTransition)
+                if (Vector2.Distance(player.position, childWaypoint.transform.position) <= 0.3f && !cameraTransition)
                 {
                     Waypoint waypoint = childWaypoint.GetComponent<Waypoint>();
                     cameraTransition = true;
+                    walkAnimation = true;
                     CharacterManager.instance.blockaction = true;
-                    cameraTargetPosition = waypoint.nextcameraPosition.position;
+                    CharacterManager.instance.horizontalMove = 0f;
+                     cameraTargetPosition = waypoint.nextcameraPosition.position;
                     playerTargetPosition = waypoint.nextplayerPosition.position;
                     nextDirectionRight = waypoint.nextDirectionRight;
                     currentFrame = waypoint.nextFrame;
@@ -77,27 +81,29 @@ public class CameraManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (cameraTransition&&Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.1f)
+        if (CharacterManager.instance.blockaction&&cameraTransition && Vector2.Distance(mainCamera.position, cameraTargetPosition) > 0.1f)
         {
             mainCamera.position = Vector3.SmoothDamp(mainCamera.position, cameraTargetPosition, ref cameraVelocity, cameraSmoothTime);
         }
-
-        if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) > 0.5f)
+        if (walkAnimation && CharacterManager.instance.blockaction && cameraTransition &&Vector2.Distance(player.position, playerTargetPosition) >= 0.3f)
         {
-            Debug.Log("GO");
+            Debug.Log(Vector2.Distance(player.position, playerTargetPosition));
             if (nextDirectionRight)
                 player.position += Vector3.right * Time.deltaTime * playerAnimationSpeed;
             else
                 player.position -= Vector3.right * Time.deltaTime * playerAnimationSpeed;
         }
-        else if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) <= 0.5f)
+        else if (cameraTransition&&Vector2.Distance(player.position, playerTargetPosition) < 0.3f)
         {
+            Debug.Log("STOP walk");
             CharacterManager.instance.StopWalkingAnim();
+            walkAnimation = false;
         }
-
+        
         // Stop animation
-        if (Vector2.Distance(player.position, playerTargetPosition) <= 0.5f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.1f)
+        if (!walkAnimation && Vector2.Distance(player.position, playerTargetPosition) < 0.3f && Vector2.Distance(mainCamera.position, cameraTargetPosition) <= 0.1f)
         {
+            Debug.Log("STOP transition");
             cameraTransition = false;
             mainCamera.position = cameraTargetPosition;
             CharacterManager.instance.blockaction = false;

@@ -12,9 +12,8 @@ public class CharacterManager : MonoBehaviour
     public Transform objectAnchor;
 
     private Rigidbody2D rigidBody;
-
-    [SerializeField]
-    private float horizontalMove = 0f;
+    
+    public float horizontalMove = 0f;
     private bool rightDirection;
     [SerializeField]
     private SpriteRenderer mysprite1;
