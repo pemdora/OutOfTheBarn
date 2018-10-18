@@ -69,7 +69,7 @@ public class CameraManager : MonoBehaviour {
                     walkAnimation = true;
                     CharacterManager.instance.blockaction = true;
                     CharacterManager.instance.horizontalMove = 0f;
-                     cameraTargetPosition = waypoint.nextcameraPosition.position;
+                    cameraTargetPosition = waypoint.nextcameraPosition.position;
                     playerTargetPosition = waypoint.nextplayerPosition.position;
                     nextDirectionRight = waypoint.nextDirectionRight;
                     currentFrame = waypoint.nextFrame;
