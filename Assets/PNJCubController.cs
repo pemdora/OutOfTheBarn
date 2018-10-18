@@ -15,27 +15,40 @@ public class PNJCubController : MonoBehaviour {
         myAnimator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         is_awake = false;
+        GetComponent<Transform>().position += new Vector3(0f,-2.6f,0f);
     }
 
     // Update is called once per frame
-    void Update() {
+    void Update()
+    {
         distancePlayer = TargetPlayer.transform.position.x - transform.position.x;
-        if (is_awake && Mathf.Abs(distancePlayer) > follow_distance)
-        {
-            rigidBody.velocity = new Vector2(Mathf.Min(distancePlayer/10 , 1) * speed, 0);
-            myAnimator.SetBool("Walking",true);
-        }
-        else
-        {
-            rigidBody.velocity = new Vector2(0, 0);
-            myAnimator.SetBool("Walking",false);
+        if (is_awake) { 
+            if (Mathf.Abs(distancePlayer) > follow_distance)
+            {
+                rigidBody.velocity = new Vector2(Mathf.Min(distancePlayer / 20, 1) * speed, 0);
+                myAnimator.SetBool("Walking", true);
+            }
+            else
+            {
+                rigidBody.velocity = new Vector2(0, 0);
+                myAnimator.SetBool("Walking", false);
+            }
+            if (distancePlayer < 0)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+                
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        if (other == TargetPlayer)
+     void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject == TargetPlayer)
         {
-            myAnimator.SetTrigger("CubAwake");
+            myAnimator.SetBool("Awake", true);
             is_awake = true;
         }
     }
