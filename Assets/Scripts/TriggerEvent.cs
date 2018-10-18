@@ -8,6 +8,8 @@ public class TriggerEvent : MonoBehaviour
     public GameObject textPanel;
     public bool goodAlert;
     public Text textToDisplay;
+    public bool hasleftTrigger;
+    
 
     [HideInInspector]
     public static TriggerEvent instance = null;
@@ -25,6 +27,7 @@ public class TriggerEvent : MonoBehaviour
 
     // Use this for initialization
     void Start () {
+        goodAlert = false;
         textPanel.SetActive(false);
     }
 
@@ -34,23 +37,28 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        goodAlert = true;
-        if (goodAlert &&!CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction)
+        hasleftTrigger = false;
+        if (!goodAlert &&!CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction && other.name == "Player")
         {
-            if(LevelManager.instance)
-            Invoke("DisplayText", 0.50f);
-            textToDisplay.text = "Good Alert";
+            goodAlert = true;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
         goodAlert = false;
+        hasleftTrigger = true;
     }
 
     public void DisplayText()
     {
         textPanel.SetActive(true);
         Invoke("MasktextPanel", 0.5f);
+    }
+
+    public void DisplayGoodAlertText()
+    {
+        Invoke("DisplayText", 0.50f);
+        textToDisplay.text = "Good Alert";
     }
 
     public void DisplayFalseAlertText()

@@ -8,7 +8,7 @@ public class Door : MonoBehaviour {
     private BoxCollider2D doorCollider;
     public int id;
     public bool doorInterraction;
-    private bool locked;
+    public bool locked;
     private bool blockaction;
 
     // Use this for initialization

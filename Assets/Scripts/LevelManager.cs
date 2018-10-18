@@ -24,9 +24,14 @@ public class LevelManager : MonoBehaviour {
     [Header("[Level 2 Variables]")]
     #region Level2
     private int levelStep; // 1 Get water into box collider
-    private bool hasWistle;
+    [SerializeField]
+    private bool hasWistled;
+    private int levelEnding;
     public Animator myAnimatorBear;
     public Animator myAnimatorSheep;
+    public GameObject pnjArrestGroup;
+    public Animator pnjSheep1;
+    public Animator pnjSheep2;
     #endregion
 
 
@@ -49,6 +54,7 @@ public class LevelManager : MonoBehaviour {
     {
         inFinishedCollider = false;
         levelStep = 0;
+        levelEnding = 0;
     }
 
 
@@ -82,10 +88,45 @@ public class LevelManager : MonoBehaviour {
                     myAnimatorBear.SetBool("IsThere", true);
                     Debug.Log("Ok");
                 }
-                // Step 2 : 
+                // Step 2 : Wistle in frame or not
                 if (levelStep==1)
                 {
-                    // hasWistle = true
+                    if (!hasWistled && TriggerEvent.instance.goodAlert)
+                    {
+                        hasWistled = true;
+                        TriggerEvent.instance.DisplayGoodAlertText();
+                    }
+                    if(TriggerEvent.instance.hasleftTrigger)
+                    {
+                        levelStep++;
+                    }
+                }
+                if (levelStep == 2)
+                {
+                    if (hasWistled)
+                    {
+                        levelEnding = 1;
+                        pnjArrestGroup.transform.position = new Vector3(51.5f, -0.78f, 0f);
+                        levelStep++;
+                    }
+                    else
+                    {
+                        GameObject door = GameObject.Find("door1Level2");
+                        if (door.GetComponent<Door>().locked)
+                        {
+                            levelEnding = 2;
+                            pnjArrestGroup.transform.position = new Vector3(34.5f, -0.78f, 0f);
+                            levelStep++;
+                        }
+                        else
+                        {
+                            levelEnding = 3;
+                            pnjArrestGroup.transform.position = new Vector3(0.7f, -0.78f, 0f);
+                            pnjSheep1.SetBool("Is_Dead", true);
+                            pnjSheep2.SetBool("Is_Dead", true);
+                            levelStep++;
+                        }
+                    }
                 }
                 break;
         }
