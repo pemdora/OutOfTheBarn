@@ -30,8 +30,10 @@ public class LevelManager : MonoBehaviour {
     public Animator myAnimatorBear;
     public Animator myAnimatorSheep;
     public GameObject pnjArrestGroup;
+    public Animator pnjSheep0;
     public Animator pnjSheep1;
     public Animator pnjSheep2;
+    public Animator pnjSheep3;
     #endregion
 
 
@@ -111,6 +113,8 @@ public class LevelManager : MonoBehaviour {
                     }
                     else
                     {
+                        pnjSheep2.SetBool("Is_Dead", true);
+                        pnjSheep3.SetBool("Is_Dead", true);
                         GameObject door = GameObject.Find("door1Level2");
                         if (door.GetComponent<Door>().locked)
                         {

@@ -59,3 +59,11 @@ MonoBehaviour:
   textPanel: {fileID: 0}
   txtElement: {fileID: 0}
   finishedText: Good job
+  hasWistled: 0
+  myAnimatorBear: {fileID: 0}
+  myAnimatorSheep: {fileID: 0}
+  pnjArrestGroup: {fileID: 0}
+  pnjSheep0: {fileID: 0}
+  pnjSheep1: {fileID: 0}
+  pnjSheep2: {fileID: 0}
+  pnjSheep3: {fileID: 0}
