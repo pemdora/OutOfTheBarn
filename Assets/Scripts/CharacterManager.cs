@@ -82,7 +82,6 @@ public class CharacterManager : MonoBehaviour
 
                 if (!TriggerEvent.instance.goodAlert)
                 {
-                    Debug.Log("False Alert");
                     TriggerEvent.instance.DisplayFalseAlertText();
                 }
             }

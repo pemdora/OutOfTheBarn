@@ -132,6 +132,29 @@ public class LevelManager : MonoBehaviour {
                         }
                     }
                 }
+
+                // Finished level
+                if (levelStep==3 &&inFinishedCollider)
+                {
+                    if (CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().type == Type.waterBucket)
+                    {
+                        txtElement.text = finishedText;
+                        switch (levelEnding)
+                        {
+                            case 1:
+                                txtElement.text = "You did good, we stopped that bear thanks to you";
+                                break;
+                            case 2:
+                                txtElement.text = "There was a bear attack but it got stopped by our closed door.";
+                                break;
+                            case 3:
+                                txtElement.text = "There was a bear attack, it was a slaughter... Someone left the door opened";
+                                break;
+                        }
+                        textPanel.SetActive(true);
+                        Invoke("LoadNextScene", 5f);
+                    }
+                }
                 break;
         }
     }
