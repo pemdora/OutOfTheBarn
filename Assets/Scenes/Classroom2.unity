@@ -446,8 +446,8 @@ SpriteRenderer:
   m_SortingLayerID: -1875512875
   m_SortingLayer: -1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 728e90e03fe99b64383a4f058fa88243, type: 3}
-  m_Color: {r: 0.6415094, g: 0.31167677, b: 0.31167677, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5777d2b52f26a894da6e8f632e672569, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -572,6 +572,11 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 581224806}
+    - target: {fileID: 114367147911506070, guid: 6ac0fb5e440932c4aa41814c18c3fe48,
+        type: 2}
+      propertyPath: m_Text
+      value: Got It !
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac0fb5e440932c4aa41814c18c3fe48, type: 2}
   m_IsPrefabAsset: 0
