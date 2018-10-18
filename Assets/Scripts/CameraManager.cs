@@ -115,7 +115,6 @@ public class CameraManager : MonoBehaviour
 
     public void ChangeCamera()
     {
-        Debug.Log("coucou");
         if (!followplayer)
         {
             followplayer = true;

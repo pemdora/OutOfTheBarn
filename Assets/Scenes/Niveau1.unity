@@ -648,6 +648,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9385bd4cd787ce44f82f7f801d9a7ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 0
+  pauseUI: {fileID: 0}
+  nextScene: 
+  pauseState: 0
+  inFinishedCollider: 0
+  textPanel: {fileID: 0}
+  txtElement: {fileID: 0}
+  finishedText: 
+  myAnimatorBear: {fileID: 0}
+  myAnimatorSheep: {fileID: 0}
+  pnjArrestGroup: {fileID: 0}
+  pnjSheep0: {fileID: 0}
+  pnjSheep1: {fileID: 0}
+  pnjSheep2: {fileID: 0}
+  pnjSheep3: {fileID: 0}
+  hasWistled: 0
 --- !u!4 &401211838
 Transform:
   m_ObjectHideFlags: 0
@@ -792,6 +808,7 @@ MonoBehaviour:
   walkAnimation: 0
   playerX: 0
   cameraX: 0
+  followplayer: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

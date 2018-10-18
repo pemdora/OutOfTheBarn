@@ -179,4 +179,6 @@ public class CharacterManager : MonoBehaviour
     {
         collisionName = collision.name;
     }
+
+
 }

@@ -20,13 +20,9 @@ public class LevelManager : MonoBehaviour {
     public GameObject textPanel;
     public Text txtElement;
     public string finishedText;
-    
-    [Header("[Level 2 Variables]")]
+
     #region Level2
-    private int levelStep; // 1 Get water into box collider
-    [SerializeField]
-    private bool hasWistled;
-    private int levelEnding;
+    [Header("[Level 2 Variables]")]
     public Animator myAnimatorBear;
     public Animator myAnimatorSheep;
     public GameObject pnjArrestGroup;
@@ -34,8 +30,15 @@ public class LevelManager : MonoBehaviour {
     public Animator pnjSheep1;
     public Animator pnjSheep2;
     public Animator pnjSheep3;
+    private int levelStep; // 1 Get water into box collider
+    [SerializeField]
+    private bool hasWistled;
+    private int levelEnding;
     #endregion
 
+    [Header("[Level 3 Variables]")]
+    public Animator cameraAnimator;
+    private bool triggerShakingAnim;
 
     [HideInInspector]
     public static LevelManager instance = null;
@@ -57,6 +60,7 @@ public class LevelManager : MonoBehaviour {
         inFinishedCollider = false;
         levelStep = 0;
         levelEnding = 0;
+        triggerShakingAnim = false;
     }
 
 
@@ -88,7 +92,6 @@ public class LevelManager : MonoBehaviour {
                     levelStep++;
                     myAnimatorSheep.SetBool("Is_Dead", true);
                     myAnimatorBear.SetBool("IsThere", true);
-                    Debug.Log("Ok");
                 }
                 // Step 2 : Wistle in frame or not
                 if (levelStep==1)
@@ -156,6 +159,18 @@ public class LevelManager : MonoBehaviour {
                     }
                 }
                 break;
+            case 3:
+                if (CharacterManager.instance.collisionName.Equals("ShakedCollider")&& !triggerShakingAnim)
+                {
+                    triggerShakingAnim = true;
+                    txtElement.text = "Bears are attacking the facility ! Beware of Bears !";
+                    CharacterManager.instance.blockaction = true;
+                    cameraAnimator.SetTrigger("isShaking");
+                    Invoke("Blockaction", 1.5f);
+                    textPanel.SetActive(true);
+                    Invoke("MasktextPanel", 5f);
+                }
+                break;
         }
     }
 
@@ -212,5 +227,19 @@ public class LevelManager : MonoBehaviour {
     public void SetInFinishedCollider(bool value)
     {
         inFinishedCollider = value;
+    }
+
+    private void Blockaction()
+    {
+        CharacterManager.instance.blockaction = false;
+    }
+
+
+    public void DisplaytextPanel()
+    {
+    }
+    public void MasktextPanel()
+    {
+        textPanel.SetActive(false);
     }
 }
