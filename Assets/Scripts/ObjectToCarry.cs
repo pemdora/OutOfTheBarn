@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObjectToCarry : MonoBehaviour {
 
     [HideInInspector]
-    public enum Type {key};
+    public enum Type { key, waterBucket};
+    public Type type;
     public int id;
     public bool objectFall;
     public bool objectUp;
@@ -41,7 +42,7 @@ public class ObjectToCarry : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (CharacterManager.instance.pressSpace && !CharacterManager.instance.blockaction)
+        if (CharacterManager.instance.carryButtonDown && !CharacterManager.instance.blockaction)
             CharacterManager.instance.CarryObject(this.gameObject);
     }
 

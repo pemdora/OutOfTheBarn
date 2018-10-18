@@ -6,7 +6,7 @@ public class CharacterManager : MonoBehaviour
 {
     [HideInInspector]
     public GameObject player;
-    public bool pressSpace;
+    public bool carryButtonDown;
     public bool wistleInterraction;
     public bool blockaction;
 
@@ -57,16 +57,24 @@ public class CharacterManager : MonoBehaviour
     {
         if (!blockaction)
         {
-            if (!wistleInterraction && Input.GetKeyDown(KeyCode.Space))
+            // Check Carry/Drop
+            if (!wistleInterraction && !carryButtonDown && Input.GetKeyDown(KeyCode.V))
             {
-                pressSpace = true;
+                carryButtonDown = true;
             }
             else
             {
-                pressSpace = false;
+                carryButtonDown = false;
             }
 
-            if (objectTocarry == null && !pressSpace && Input.GetKeyDown(KeyCode.V))
+            if (objectTocarry != null && carryButtonDown)
+            {
+                carryButtonDown = false;
+                DropObject();
+            }
+
+            // Check Wistle
+            if (!wistleInterraction && !carryButtonDown && Input.GetKeyDown(KeyCode.C))
             {
                 wistleInterraction = true;
                 myAnimator1.SetTrigger("isWistling");
@@ -80,11 +88,6 @@ public class CharacterManager : MonoBehaviour
             {
                 wistleInterraction = false;
             }
-
-            if (objectTocarry != null && pressSpace)
-            {
-                DropObject();
-            }
         }
         Flip();
     }
@@ -94,7 +97,6 @@ public class CharacterManager : MonoBehaviour
     {
         if (CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation)
         {
-            Debug.Log("Dont moove");
             return;
         }
         if (!CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation || !blockaction) // cant move player when a cinematic is playing
@@ -152,7 +154,7 @@ public class CharacterManager : MonoBehaviour
 
     private void DropObject()
     {
-        pressSpace = false;
+        carryButtonDown = false;
         myAnimator1.SetTrigger("CarringTrigger");
         objectTocarry.GetComponent<ObjectToCarry>().ObjFall();
         blockaction = true;
