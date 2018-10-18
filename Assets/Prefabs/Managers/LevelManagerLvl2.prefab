@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   pauseUI: {fileID: 0}
-  nextScene: Classroom2
+  nextScene: Classroom3
   pauseState: 0
   inFinishedCollider: 0
   textPanel: {fileID: 0}

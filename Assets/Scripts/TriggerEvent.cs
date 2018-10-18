@@ -37,16 +37,22 @@ public class TriggerEvent : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        hasleftTrigger = false;
-        if (!goodAlert &&!CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction && other.name == "Player")
+        if (other.name == "Player")
         {
-            goodAlert = true;
+            hasleftTrigger = false;
+            if (!goodAlert && !CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction && other.name == "Player")
+            {
+                goodAlert = true;
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        goodAlert = false;
-        hasleftTrigger = true;
+        if (other.name == "Player")
+        {
+            goodAlert = false;
+            hasleftTrigger = true;
+        }
     }
 
     public void DisplayText()
@@ -58,13 +64,13 @@ public class TriggerEvent : MonoBehaviour
     public void DisplayGoodAlertText()
     {
         Invoke("DisplayText", 0.50f);
-        textToDisplay.text = "Good Alert";
+        textToDisplay.text = "Alert !! There is a bear in sector 6";
     }
 
     public void DisplayFalseAlertText()
     {
         Invoke("DisplayText", 0.75f);
-        textToDisplay.text = "False Alert";
+        textToDisplay.text = "Stop playing with the whistle please !";
     }
 
     public void MasktextPanel()

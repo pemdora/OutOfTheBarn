@@ -5,14 +5,10 @@ using UnityEngine;
 public class FinishedLevelCollider : MonoBehaviour {
 
 	// Use this for initialization
-	void Start () {
-		
-	}
+	void Start () {}
 	
 	// Update is called once per frame
-	void Update () {
-
-    }
+	void Update () {}
 
     private void OnTriggerStay2D(Collider2D other)
     {
