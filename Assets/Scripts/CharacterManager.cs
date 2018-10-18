@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+    [HideInInspector]
     public GameObject player;
     public bool pressSpace;
     public bool wistleInterraction;
     public bool blockaction;
+
     [HideInInspector]
     public GameObject objectTocarry;
     public Transform objectAnchor;
@@ -15,7 +17,8 @@ public class CharacterManager : MonoBehaviour
     private Rigidbody2D rigidBody;
     
     public float horizontalMove = 0f;
-    private bool rightDirection;
+    [HideInInspector]
+    public bool rightDirection;
     [SerializeField]
     private SpriteRenderer mysprite1;
     private Animator myAnimator1;
@@ -89,7 +92,12 @@ public class CharacterManager : MonoBehaviour
     // Dedicated for physics, Called a fixed amount (fixed amount of time per second) 
     public void FixedUpdate()
     {
-       // if (!CameraManager.instance.cameraTransition) // cant move player when a cinematic is playing
+        if (CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation)
+        {
+            Debug.Log("Dont moove");
+            return;
+        }
+        if (!CameraManager.instance.cameraTransition && !CameraManager.instance.walkAnimation || !blockaction) // cant move player when a cinematic is playing
         {
             horizontalMove = Input.GetAxis("Horizontal");
             if (horizontalMove > -0.1f && horizontalMove < 0.1f)
@@ -100,7 +108,8 @@ public class CharacterManager : MonoBehaviour
             {
                 myAnimator1.SetBool("Walk", true);
             }
-            rigidBody.velocity = new Vector2(horizontalMove * speed, rigidBody.velocity.y); // x--
+            transform.Translate(Vector3.right * horizontalMove * speed * Time.deltaTime);
+            //rigidBody.velocity = new Vector2(horizontalMove * speed, rigidBody.velocity.y); // x--
         }
 
     }
