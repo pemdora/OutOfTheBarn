@@ -3559,6 +3559,21 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224707511690183102, guid: 502206902db179045b0087a2cec7019a,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.84450006
+      objectReference: {fileID: 0}
+    - target: {fileID: 224707511690183102, guid: 502206902db179045b0087a2cec7019a,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -3.5999985
+      objectReference: {fileID: 0}
+    - target: {fileID: 114590660224627524, guid: 502206902db179045b0087a2cec7019a,
+        type: 2}
+      propertyPath: m_FontData.m_MaxSize
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 502206902db179045b0087a2cec7019a, type: 2}
   m_IsPrefabAsset: 0

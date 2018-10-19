@@ -58,7 +58,7 @@ public class TriggerEvent : MonoBehaviour
     public void DisplayText()
     {
         textPanel.SetActive(true);
-        Invoke("MasktextPanel", 0.5f);
+        Invoke("MasktextPanel", 2f);
     }
 
     public void DisplayGoodAlertText()
@@ -69,7 +69,7 @@ public class TriggerEvent : MonoBehaviour
 
     public void DisplayFalseAlertText()
     {
-        Invoke("DisplayText", 0.75f);
+        Invoke("DisplayText", 1.25f);
         textToDisplay.text = "Stop playing with the whistle please !";
     }
 

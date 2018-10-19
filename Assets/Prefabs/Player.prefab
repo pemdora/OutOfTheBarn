@@ -124,7 +124,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018563680317466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -2.02, z: 0}
+  m_LocalPosition: {x: -3.46, y: -2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4695161844974772}
@@ -217,7 +217,7 @@ MonoBehaviour:
   rightDirection: 0
   mysprite1: {fileID: 212323296459196148}
   mysprite2: {fileID: 212683731524358926}
-  speed: 4
+  speed: 5
   collisionName: 
 --- !u!212 &212323296459196148
 SpriteRenderer:

@@ -82,7 +82,7 @@ public class LevelManager : MonoBehaviour {
                     {
                         textPanel.SetActive(true);
                         txtElement.text = finishedText;
-                        Invoke("LoadNextScene", 2f);
+                        Invoke("LoadNextScene", 5f);
                     }
                 }
                 break;
@@ -156,7 +156,7 @@ public class LevelManager : MonoBehaviour {
                                 break;
                         }
                         textPanel.SetActive(true);
-                        Invoke("LoadNextScene", 5f);
+                        Invoke("LoadNextScene", 7f);
                     }
                 }
                 break;
