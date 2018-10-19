@@ -5,11 +5,15 @@ using UnityEngine.UI;
 
 public class TriggerEvent : MonoBehaviour
 {
+    //public Animator hp;
+    public Animator camShake;
+
     public GameObject textPanel;
     public bool goodAlert;
     public Text textToDisplay;
     public bool hasleftTrigger;
-    
+
+    public bool stopCheckWistle;
 
     [HideInInspector]
     public static TriggerEvent instance = null;
@@ -28,6 +32,7 @@ public class TriggerEvent : MonoBehaviour
     // Use this for initialization
     void Start () {
         goodAlert = false;
+        stopCheckWistle = false;
         textPanel.SetActive(false);
     }
 
@@ -63,14 +68,27 @@ public class TriggerEvent : MonoBehaviour
 
     public void DisplayGoodAlertText()
     {
-        Invoke("DisplayText", 0.50f);
-        textToDisplay.text = "Alert !! There is a bear in sector 6";
+        Invoke("TriggerSmallShake", 0.5f);
+        if (!stopCheckWistle)
+        {
+            Invoke("DisplayText", 0.50f);
+            textToDisplay.text = "Alert !! There is a bear in sector 6";
+        }
     }
 
     public void DisplayFalseAlertText()
     {
-        Invoke("DisplayText", 1.25f);
-        textToDisplay.text = "Stop playing with the whistle please !";
+        Invoke("TriggerSmallShake", 0.5f);
+        if (!stopCheckWistle)
+        {
+            Invoke("DisplayText", 1.25f);
+            textToDisplay.text = "Stop playing with the whistle please !";
+        }
+    }
+
+    public void TriggerSmallShake()
+    {
+        camShake.SetTrigger("smallshake");
     }
 
     public void MasktextPanel()

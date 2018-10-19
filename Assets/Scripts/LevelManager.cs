@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour {
     public GameObject textPanel;
     public Text txtElement;
     public string finishedText;
+    public GameObject endPanel;
 
     #region Level2
     [Header("[Level 2 Variables]")]
@@ -39,7 +40,6 @@ public class LevelManager : MonoBehaviour {
     [Header("[Level 3 Variables]")]
     public Animator cameraAnimator;
     private bool triggerShakingAnim;
-    public GameObject endPanel;
 
     [HideInInspector]
     public static LevelManager instance = null;
@@ -67,11 +67,10 @@ public class LevelManager : MonoBehaviour {
 
     private void Update()
     {
-        /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
-        }*/
+        }
         //Cheking Level envent
         switch (level)
         {
@@ -166,6 +165,7 @@ public class LevelManager : MonoBehaviour {
                     triggerShakingAnim = true;
                     txtElement.text = "Bears are attacking the facility ! Beware of Bears !";
                     CharacterManager.instance.blockaction = true;
+                    TriggerEvent.instance.stopCheckWistle = true;
                     cameraAnimator.SetTrigger("isShaking");
                     Invoke("Blockaction", 1.5f);
                     textPanel.SetActive(true);
