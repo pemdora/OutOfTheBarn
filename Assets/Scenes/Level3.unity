@@ -5806,6 +5806,11 @@ Prefab:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114332211037836494, guid: 926a341a0fb347e4483859b5a5fa147e,
+        type: 2}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 926a341a0fb347e4483859b5a5fa147e, type: 2}
   m_IsPrefabAsset: 0
