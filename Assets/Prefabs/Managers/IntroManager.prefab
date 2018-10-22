@@ -51,3 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d49d0bd619634154f8faeb96d48e397f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLeft: 10
+  nextScene: Level1
+  timerTxt: {fileID: 0}

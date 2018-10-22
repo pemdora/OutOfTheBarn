@@ -8829,7 +8829,12 @@ Prefab:
     - target: {fileID: 224643295951185080, guid: 3696c51fe3b246c428635fd2bd5f2118,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0.8500061
+      value: 0.850008
+      objectReference: {fileID: 0}
+    - target: {fileID: 114058010458884910, guid: 3696c51fe3b246c428635fd2bd5f2118,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3696c51fe3b246c428635fd2bd5f2118, type: 2}

@@ -3,14 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Intro : MonoBehaviour {
+public class Intro : MonoBehaviour
+{
+    public float timeLeft;
     public string nextScene;
-    private void Update()
+    public Text timerTxt;
+
+    private void FixedUpdate()
     {
-        if (Input.anyKeyDown)
+        if (timeLeft < 0)
         {
-            SceneManager.LoadScene(nextScene);
+            timerTxt.text = "Press Any button";
+            if (Input.anyKeyDown)
+                SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime;
+            timerTxt.text = Mathf.Round(timeLeft).ToString();
         }
     }
 

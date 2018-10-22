@@ -313,9 +313,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114415790086537764, guid: 27b462b2e51d76f4e90684c61cf422df,
         type: 2}
-      propertyPath: nextScene
-      value: Level2
-      objectReference: {fileID: 0}
+      propertyPath: timerTxt
+      value: 
+      objectReference: {fileID: 1411130902}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b462b2e51d76f4e90684c61cf422df, type: 2}
   m_IsPrefabAsset: 0
@@ -496,6 +496,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f16f10f610a120240a20d7cf3df1dc91, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1411130902 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114434784731359670, guid: f16f10f610a120240a20d7cf3df1dc91,
+    type: 2}
+  m_PrefabInternal: {fileID: 1411130901}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1447778964 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4526309508863800, guid: 26df3866418b81c4a95410d8aadab4ae,
