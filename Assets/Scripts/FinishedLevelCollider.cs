@@ -12,10 +12,12 @@ public class FinishedLevelCollider : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        LevelManager.instance.SetInFinishedCollider(true);
+        if(other.name=="Player")
+            LevelManager.instance.SetInFinishedCollider(true);
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        LevelManager.instance.SetInFinishedCollider(false);
+        if (other.name == "Player")
+            LevelManager.instance.SetInFinishedCollider(false);
     }
 }

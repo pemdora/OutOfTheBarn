@@ -119,7 +119,7 @@ public class LevelManager : MonoBehaviour {
                         pnjSheep2.SetBool("Is_Dead", true);
                         pnjSheep3.SetBool("Is_Dead", true);
                         GameObject door = GameObject.Find("door1Level2");
-                        if (door.GetComponent<Door>().locked)
+                        if (door.GetComponent<DoorInteraction>().locked)
                         {
                             levelEnding = 2;
                             pnjArrestGroup.transform.position = new Vector3(34.5f, -0.78f, 0f);
@@ -165,6 +165,7 @@ public class LevelManager : MonoBehaviour {
                     triggerShakingAnim = true;
                     txtElement.text = "Bears are attacking the facility ! Beware of Bears !";
                     CharacterManager.instance.blockaction = true;
+                    CharacterManager.instance.StopWalkingAnim();
                     TriggerEvent.instance.stopCheckWistle = true;
                     cameraAnimator.SetTrigger("isShaking");
                     Invoke("Blockaction", 1.5f);

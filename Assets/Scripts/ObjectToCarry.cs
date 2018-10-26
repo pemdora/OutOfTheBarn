@@ -12,7 +12,7 @@ public class ObjectToCarry : MonoBehaviour {
 
     public float objectGroundYPosition;
     public float objectUpYPosition;
-    public float objectAnimationSpeed = 2f;
+    public float objectAnimationSpeed = 1.5f;
 
     // Use this for initialization
     void Start () { }

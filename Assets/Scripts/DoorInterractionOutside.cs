@@ -2,25 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour {
-
-    private Animator myAnimator;
-    private BoxCollider2D doorCollider;
+public class DoorInterractionOutside : MonoBehaviour
+{
+    [SerializeField] private Animator myAnimator;
+    [SerializeField] private BoxCollider2D doorCollider;
+    private BoxCollider2D doorColliderInteraction;
     public int id;
     public bool doorInterraction;
     public bool locked;
     private bool blockaction;
+    private bool isInDoorColliderInteraction;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        myAnimator = GetComponent<Animator>();
-        doorCollider = GetComponent<BoxCollider2D>();
+        doorColliderInteraction = GetComponent<BoxCollider2D>();
         locked = true;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -30,38 +32,27 @@ public class Door : MonoBehaviour {
         {
             doorInterraction = false;
         }
-    }
 
-    void OnCollisionStay2D(Collision2D col)
-    {
-        if (!blockaction)
+        if (!blockaction && isInDoorColliderInteraction)
         {
-            if (doorInterraction && locked && CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().id == this.id)
+            if (doorInterraction && locked)
             {
-                Debug.Log("Unlocked");
+                //Debug.Log("Unlocked");
                 blockaction = true;
                 locked = false;
                 myAnimator.SetBool("DoorOpen", true);
                 doorCollider.isTrigger = true;
                 Invoke("Blockaction", 0.25f); ;
             }
-            if (locked)
+            else if (locked && isInDoorColliderInteraction)
             {
-                Debug.Log("Locked");
+                //Debug.Log("Locked");
             }
-        }
-    }
-
-
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        if (!blockaction)
-        {
-            if (doorInterraction && !locked && CharacterManager.instance.objectTocarry != null && CharacterManager.instance.objectTocarry.GetComponent<ObjectToCarry>().id == this.id)
+            else
+            if (isInDoorColliderInteraction && doorInterraction && !locked)
             {
                 doorCollider.isTrigger = false;
-                Debug.Log("ReLocked");
+                //Debug.Log("ReLocked");
                 blockaction = true;
                 locked = true;
                 myAnimator.SetBool("DoorOpen", false);
@@ -70,8 +61,20 @@ public class Door : MonoBehaviour {
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        isInDoorColliderInteraction = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        isInDoorColliderInteraction = false;
+    }
+
     private void Blockaction()
     {
         blockaction = false;
     }
+
 }
