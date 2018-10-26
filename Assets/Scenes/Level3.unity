@@ -5000,7 +5000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1030692428
 Transform:
   m_ObjectHideFlags: 0
@@ -7731,6 +7731,10 @@ Prefab:
     - target: {fileID: 1725282589094314, guid: d9862d7676ae413439fdd9f0df082524, type: 2}
       propertyPath: m_Name
       value: PNJSheepColor2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725282589094314, guid: d9862d7676ae413439fdd9f0df082524, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9862d7676ae413439fdd9f0df082524, type: 2}

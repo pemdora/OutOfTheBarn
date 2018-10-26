@@ -52,5 +52,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLeft: 10
-  nextScene: Level1
+  nextScene: Level3
   timerTxt: {fileID: 0}
