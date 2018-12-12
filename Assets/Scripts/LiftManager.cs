@@ -41,34 +41,33 @@ public class LiftManager : MonoBehaviour
 
         if (liftActivated && buttonUp && currentLvl< max)
         {
+            Debug.Log("lift up");
             currentLvl++;
             CharacterManager.instance.StopWalkingAnim();
+            CharacterManager.instance.blockaction = true;
             CharacterManager.instance.player.transform.SetParent(this.transform);
             movingLiftUp = true;
-            CharacterManager.instance.blockaction = true;
             targetPosition = this.transform.position + new Vector3(0f, offsetY, 0f);
         }
         else if (liftActivated && buttonDown && currentLvl > min)
         {
+            Debug.Log("lift down");
             currentLvl--;
             CharacterManager.instance.StopWalkingAnim();
+            CharacterManager.instance.blockaction = true;
             CharacterManager.instance.player.transform.SetParent(this.transform);
             movingLiftDown = true;
-            CharacterManager.instance.blockaction = true;
             targetPosition = this.transform.position - new Vector3(0f, offsetY, 0f);
         }
 
-    }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
-    {
         // The step size is equal to speed times frame time.
         float step = animationSpeed * Time.deltaTime;
 
         if (movingLiftUp && !movingLiftDown)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, step);
+            Debug.Log("this.transform.position "+ this.transform.position);
+            Debug.Log("targetPosition "+ targetPosition);
         }
         if (movingLiftDown && !movingLiftUp)
         {
@@ -76,8 +75,9 @@ public class LiftManager : MonoBehaviour
         }
 
         // STOP LIFT
-        if ((Vector2.Distance(this.transform.position, targetPosition) <= 0.1f))
+        if ((movingLiftUp || movingLiftDown)&& (Vector2.Distance(this.transform.position, targetPosition) <= 0.1f))
         {
+            Debug.Log("stop lift");
             this.transform.position = targetPosition;
             // CharacterManager.instance.player.transform.parent = null;
             CharacterManager.instance.blockaction = false;

@@ -185,15 +185,15 @@ public class CharacterManager : MonoBehaviour
     // check if in collider for wistle
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
-        Debug.Log(wistleCollisionPlayerInCheck);
+        //Debug.Log(collision.name);
+        //Debug.Log(wistleCollisionPlayerInCheck);
         if (collision.name== "Lvl1Collider1")
             wistleCollisionPlayerInCheck = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("Exit " + wistleCollisionPlayerInCheck);
+        //Debug.Log("Exit " + wistleCollisionPlayerInCheck);
         if (collision.name == "Lvl1Collider1")
             wistleCollisionPlayerInCheck = false;
     }
