@@ -28,6 +28,7 @@ public class CharacterManager : MonoBehaviour
     [SerializeField]
     private float speed;
     public string collisionName;
+    public bool wistleCollisionPlayerInCheck;
 
     [HideInInspector]
     public static CharacterManager instance = null;
@@ -181,4 +182,19 @@ public class CharacterManager : MonoBehaviour
     }
 
 
+    // check if in collider for wistle
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.name);
+        Debug.Log(wistleCollisionPlayerInCheck);
+        if (collision.name== "Lvl1Collider1")
+            wistleCollisionPlayerInCheck = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.Log("Exit " + wistleCollisionPlayerInCheck);
+        if (collision.name == "Lvl1Collider1")
+            wistleCollisionPlayerInCheck = false;
+    }
 }

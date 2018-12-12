@@ -8,25 +8,37 @@ public class Tuto : MonoBehaviour
     public GameObject textPanel;
     public Text textToDisplay;
     public Animator myAnimator1;
-    public float time;
+    public float timeLeft;
+
+    public bool trigger;
+    public bool finishedTuto;
 
     // Use this for initialization
     void Start ()
     {
-        myAnimator1.SetBool("isTalking",true);
-        textPanel.SetActive(true);
-        DisplayTextTuto();
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    public void DisplayTextTuto()
+    private void FixedUpdate()
     {
-        Invoke("Masktext", time);
+        if (!trigger&& Input.anyKeyDown)
+        {
+            myAnimator1.SetBool("isTalking", true);
+            textPanel.SetActive(true);
+            trigger = true;
+        }
+        if (trigger && !finishedTuto && timeLeft < 0)
+        {
+            Masktext(); finishedTuto = true;
+            return;
+        }
+        else if(trigger)
+        {
+            timeLeft -= Time.deltaTime;
+        }
+
+
     }
+    
 
     public void Masktext()
     {

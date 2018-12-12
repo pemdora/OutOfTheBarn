@@ -45,7 +45,7 @@ public class TriggerEvent : MonoBehaviour
         if (other.name == "Player")
         {
             hasleftTrigger = false;
-            if (!goodAlert && !CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction && other.name == "Player")
+            if (!goodAlert && !CharacterManager.instance.blockaction && CharacterManager.instance.wistleInterraction && CharacterManager.instance.wistleCollisionPlayerInCheck)
             {
                 goodAlert = true;
             }

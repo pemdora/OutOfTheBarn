@@ -476,6 +476,11 @@ Prefab:
       propertyPath: timerTxt
       value: 
       objectReference: {fileID: 1029695680}
+    - target: {fileID: 114415790086537764, guid: 27b462b2e51d76f4e90684c61cf422df,
+        type: 2}
+      propertyPath: nextScene
+      value: Level1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27b462b2e51d76f4e90684c61cf422df, type: 2}
   m_IsPrefabAsset: 0
